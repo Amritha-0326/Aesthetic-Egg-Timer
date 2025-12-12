@@ -70,6 +70,9 @@
   position: relative;
   z-index: 20;
 }
+.egg.shake {
+  animation: shake 0.5s ease-in-out 4; /* shakes 4 times and stops */
+}
 
 .time-display {
   font-size: 24px;
@@ -110,4 +113,16 @@ button:hover {
 @keyframes moveClouds {
   from { background-position-x: 0; }
   to { background-position-x: -500px; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
 }

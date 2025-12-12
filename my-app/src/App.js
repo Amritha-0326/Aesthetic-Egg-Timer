@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 function App() {const [timeLeft, setTimeLeft] = useState(0);
 const [isRunning, setIsRunning] = useState(false);
+const [shake, setShake] = useState(false);
 const [stage, setStage] = useState('menu'); // 'menu' or 'timer'
 const timerRef = useRef(null);
 const audioRef = useRef(null);
@@ -37,6 +38,9 @@ useEffect(() => {
           clearInterval(timerRef.current);
           setIsRunning(false);
           playSound();
+          setShake(true); // 👈 start shaking
+          setTimeout(() => setShake(false), 2000);
+
           return 0;
         }
         return prev - 1;
@@ -85,7 +89,8 @@ const resetToMenu = () => {
       </>
     ) : (
       <>
-        <div className="egg"></div>
+        {/* <div className="egg"></div> */}
+        <div className={`egg ${shake ? 'shake' : ''}`}></div>
         <p style={{ fontSize: '10px' }}>Your egg is ready in...</p>
         <div className="time-display">{formatTime(timeLeft)}</div>
         <button onClick={resetToMenu}>Back</button>
